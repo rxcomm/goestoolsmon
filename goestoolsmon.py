@@ -114,7 +114,7 @@ def update_decoder_plot(n):
         value = reed_solomon_last_sec,
         domain = {'x': [0, 1], 'y': [0, 1]},
         gauge = {'axis': {'range': [None, 10]}},
-        title = {'text': "Reed Soloman Errors"}),
+        title = {'text': "Reed Solomon Errors"}),
         row=1,col=2)
 
     if skipped_symbols_last_sec > 10:
