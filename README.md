@@ -8,3 +8,7 @@ Python bindings for nanomsg: https://github.com/nanomsg/nnpy
 
 Both plotly and dash packages: https://plotly.com/
 
+matplotlib https://matplotlib.org/
+
+something like ```sudo apt install libnanomsg-dev``` and then ```sudo pip3 install nnpy plotly dash matplotlib``` ought to do it on a Debian/Ubuntu based system.
+
