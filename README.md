@@ -2,9 +2,9 @@
 ![Output of GoesToolsMon](./images/example.png)
 
 # Dependencies:
-A working installation of GOESTOOLS: https://github.com/pietern/goestools\
+A working installation of GOESTOOLS: https://github.com/pietern/goestools
 
-Python bindings for nanomsg: https://github.com/nanomsg/nnpy\
+Python bindings for nanomsg: https://github.com/nanomsg/nnpy
 
-Both plotly and dash packages: https://plotly.com/\
+Both plotly and dash packages: https://plotly.com/
 
