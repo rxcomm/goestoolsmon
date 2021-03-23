@@ -12,10 +12,6 @@ from datetime import datetime
 
 global viterbi_last_sec, reed_solomon_last_sec, skipped_symbols_last_sec
 
-sub = nnpy.Socket(nnpy.AF_SP, nnpy.SUB)
-sub.connect('tcp://192.168.1.109:6002')
-sub.setsockopt(nnpy.SUB, nnpy.SUB_SUBSCRIBE, '')
-
 app = dash.Dash()
 app.layout = html.Div([dcc.Graph(id='goestools-gauges'),
                        dcc.Interval(id='interval-component',interval=1*1000,n_intervals=0),])
@@ -105,4 +101,4 @@ def update_viterbi(n):
 
 if __name__ == "__main__":
     thread = threading.Thread(target=update_stats).start()
-    app.run_server(debug=False, use_reloader=False)  # Turn off reloader if inside Jupyter
+    app.run_server(debug=False, use_reloader=False)
