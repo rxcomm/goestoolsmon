@@ -1,5 +1,11 @@
 # goestools monitor written in python
+
+# Realtime gauges...
+
 ![Output of GoesToolsMon](./images/example.png)
+
+and datalogging too...
+
 ![Plot of GoesToolsMon data](./images/plots.png)
 
 # Dependencies:
