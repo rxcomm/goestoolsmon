@@ -71,9 +71,9 @@ def update_demodulator():
         data = json.loads(sub.recv())
         time=datetime.fromisoformat(data['timestamp'][:-1]).second
         if time != timeold:
-            gain_last_sec = round(gain/num,2)
+            gain_last_sec = round(gain/num,3)
             frequency_last_sec = round(frequency/num,2)
-            omega_last_sec = round(omega/num,2)
+            omega_last_sec = round(omega/num,3)
             #print(num, gain_last_sec, frequency_last_sec, omega_last_sec)
             gain = 0
             frequency = 0
