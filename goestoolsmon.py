@@ -2,6 +2,8 @@
 import nnpy
 import json
 import threading
+import sched
+import time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import dash
@@ -69,9 +71,9 @@ def update_demodulator():
         data = json.loads(sub.recv())
         time=datetime.fromisoformat(data['timestamp'][:-1]).second
         if time != timeold:
-            gain_last_sec = int(gain/num)
-            frequency_last_sec = int(frequency/num)
-            omega_last_sec = int(omega/num)
+            gain_last_sec = round(gain/num,2)
+            frequency_last_sec = round(frequency/num,2)
+            omega_last_sec = round(omega/num,2)
             #print(num, gain_last_sec, frequency_last_sec, omega_last_sec)
             gain = 0
             frequency = 0
@@ -177,7 +179,26 @@ def update_demodulator_plot(n):
     fig.update_layout(height=325, width=1000)
     return fig
 
+def write_data(sc):
+    global viterbi_last_sec, reed_solomon_last_sec, skipped_symbols_last_sec, gain_last_sec, frequency_last_sec, omega_last_sec
+    timestamp = datetime.now().isoformat("T", "seconds")
+    with open('data.json', 'a') as f:
+        f.write('{{ "timestamp": "{}", "viterbi_errors": {}, "reed_solomon_errors": {}, "skipped_symbols": {}, "gain": {}, "frequency": {}, "omega": {} }}\n'.format( \
+                   timestamp, viterbi_last_sec, reed_solomon_last_sec, skipped_symbols_last_sec,
+                   gain_last_sec, frequency_last_sec, omega_last_sec))
+    sc.enterabs(int(time.time())+1, 1, write_data, (sc,)) # enter the next run with 1 sec delay
+
+def write_data_loop():
+    s = sched.scheduler(time.time, time.sleep)
+    s.enterabs(int(time.time())+3, 1, write_data, (s,)) # 3 sec delay to let things initialize
+    s.run()
+
 if __name__ == "__main__":
     thread = threading.Thread(target=update_decoder).start()
     thread2 = threading.Thread(target=update_demodulator).start()
-    app.run_server(debug=False, use_reloader=False)
+    LOG = True
+    if LOG:
+        thread3 = threading.Thread(target=write_data_loop).start()
+    WEB = True
+    if WEB:
+        app.run_server(debug=False, use_reloader=False)
