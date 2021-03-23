@@ -1,7 +1,9 @@
 import json
 from datetime import datetime
 import matplotlib.pyplot as plt
+import matplotlib as mpt
 
+mpt.style.use('bmh')
 with open("data.json", "r") as f:
     data = f.readlines()
 
@@ -23,24 +25,34 @@ for line in data:
     frequency.append(element["frequency"])
     omega.append(element["omega"])
 
-
 nrows = 2
 ncols = 2
 fig = plt.figure()
 axes = [ fig.add_subplot(nrows, ncols, r * ncols + c + 1) for r in range(0, nrows) for c in range(0, ncols) ]
 
-axes[0].plot(timestamp, viterbi)
-axes[1].plot(timestamp, reed_solomon, timestamp, skipped_symbols)
-axes[2].plot(timestamp, gain, timestamp, omega)
-axes[3].plot(timestamp, frequency)
+axes[0].plot(timestamp, viterbi, 'C0', label="Viterbi Errors")
+axes[1].plot(timestamp, reed_solomon, 'C0', label="Reed Solomon Errors")
+axes[1].plot(timestamp, skipped_symbols, 'C2', label="Skipped Symbols")
+axes[2].plot(timestamp, gain, 'C0', label="Loop Gain")
+axes[2].plot(timestamp, omega, 'C2', label="Loop Bandwidth")
+axes[3].plot(timestamp, frequency, 'C0', label="Frequency Offset")
+
+for ax in fig.get_axes():
+    #ax.label_outer()
+    ax.legend()
+plt.setp(axes[0].get_xticklabels(), visible=False)
+plt.setp(axes[1].get_xticklabels(), visible=False)
 
 #plt.xticks(rotation=90)
-axes[0].set_xticks([])
-axes[0].set_ylabel('Viterbi Errors')
-axes[1].set_xticks([])
-axes[1].set_ylabel('Reed Solomon Errors (blue)\nSkipped Symbols (orange)')
-axes[2].set_xlabel('Time')
-axes[2].set_ylabel('Gain (blue)\nOmega (orange)')
-axes[3].set_xlabel('Time')
-axes[3].set_ylabel('Frequency OffSet (Hz)')
+axes[0].set_ylabel('Counts per second')
+#axes[0].set_ylim([100,300])
+axes[1].set_ylabel('Counts per second')
+axes[1].set_ylim([0,8])
+axes[2].set_xlabel('Time (DD HH:MM)')
+axes[2].set_ylabel('Gain (V/V)\nBandwidth (Hz)')
+axes[2].set_ylim([0,8])
+axes[3].set_xlabel('Time (DD HH:MM)')
+axes[3].set_ylabel('Frequency (Hz)')
+
+plt.subplots_adjust(top=0.98, bottom=0.057, left=0.038, right=0.992, hspace=0.052, wspace=0.103)
 plt.show()
