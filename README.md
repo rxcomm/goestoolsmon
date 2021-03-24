@@ -2,7 +2,8 @@
 
 # Realtime gauges...
 
-![Output of GoesToolsMon](./images/example.png)
+![Output of GoesToolsMon](./images/example2a.png)
+![Output of GoesToolsMon](./images/example2b.png)
 
 # and datalogging too...
 
