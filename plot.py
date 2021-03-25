@@ -33,8 +33,8 @@ axes = [ fig.add_subplot(nrows, ncols, r * ncols + c + 1) for r in range(0, nrow
 axes[0].plot(timestamp, viterbi, 'C0', label="Viterbi Errors")
 axes[1].plot(timestamp, reed_solomon, 'C0', label="Reed Solomon Errors")
 axes[1].plot(timestamp, skipped_symbols, 'C2', label="Skipped Symbols")
-axes[2].plot(timestamp, gain, 'C0', label="Loop Gain")
-axes[2].plot(timestamp, omega, 'C2', label="Loop Bandwidth")
+axes[2].plot(timestamp, gain, 'C0', label="Costas Loop Gain")
+axes[2].plot(timestamp, omega, 'C2', label="Costas Loop Bandwidth")
 axes[3].plot(timestamp, frequency, 'C0', label="Frequency Offset")
 
 for ax in fig.get_axes():
