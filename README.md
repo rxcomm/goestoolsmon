@@ -1,9 +1,8 @@
 # goestools monitor written in python
 
-# Realtime gauges...
+# Realtime gauges and constellation plot...
 
-![Output of GoesToolsMon](./images/example2a.png)
-![Output of GoesToolsMon](./images/example2b.png)
+![Output of GoesToolsMon](./images/example.png)
 
 # and datalogging too...
 
