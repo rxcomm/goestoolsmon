@@ -228,7 +228,7 @@ def update_symbol_plot(n):
     fig = go.Figure(data=go.Scatter(x=q_symbol, y=i_symbol, mode='markers',
                     marker=dict(size=6,color='darkgreen',showscale=False)))
     fig.add_trace(go.Scatter(x=[-135,135], y=[0,0]))
-    fig.update_layout(height=720, width=477, title_text='Signal Constellation', title_x=0.5, title_y=0.90,
+    fig.update_layout(height=720, width=477, title_text='Symbol Constellation', title_x=0.5, title_y=0.90,
                       font=dict(size=14))
     fig.update_xaxes (range = [-130, 130], visible = False)
     fig.update_yaxes (range = [-130, 130], visible = False)
