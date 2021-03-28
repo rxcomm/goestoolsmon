@@ -189,7 +189,7 @@ def update_demodulator_plot(n):
         mode = "gauge+number",
         value = gain_last_sec,
         domain = {'x': [0, 1], 'y': [0, 1]},
-        gauge = {'axis': {'range': [None, 50]}},
+        gauge = {'axis': {'range': [None, 5]}},
         title = {'text': "Costas Loop Gain"}),
         row=1,col=1)
 
@@ -225,9 +225,9 @@ def update_symbol_plot(n):
     global viterbi_last_sec, reed_solomon_last_sec, skipped_symbols_last_sec, gain_last_sec, \
            frequency_last_sec, omega_last_sec, i_symbol, q_symbol
 
-    fig = go.Figure(data=go.Scatter(x=q_symbol, y=i_symbol, mode='markers',
-                    marker=dict(size=6,color='darkgreen',showscale=False)))
-    fig.add_trace(go.Scatter(x=[-135,135], y=[0,0]))
+    fig = go.Figure(data=go.Scatter(x=[-135,135], y=[0,0], marker=dict(color='red')))
+    fig.add_trace(go.Scatter(x=q_symbol, y=i_symbol, mode='markers',
+                  marker=dict(size=6,color='darkgreen',showscale=False)))
     fig.update_layout(height=720, width=477, title_text='Symbol Constellation', title_x=0.5, title_y=0.90,
                       font=dict(size=14))
     fig.update_xaxes (range = [-130, 130], visible = False)
