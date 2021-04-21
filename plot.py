@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 from datetime import datetime
 import matplotlib.pyplot as plt
@@ -48,10 +49,10 @@ axes[0].set_ylabel('Counts per packet')
 #axes[0].set_ylim([100,300])
 axes[1].set_ylabel('Counts per packet')
 axes[1].set_ylim([-0.1,8.1])
-axes[2].set_xlabel('Time (DD HH:MM)')
+axes[2].set_xlabel('Time (MM-DD HH[:MM])')
 axes[2].set_ylabel('Gain (V/V)\nBandwidth (Hz)')
 axes[2].set_ylim([0,8])
-axes[3].set_xlabel('Time (DD HH:MM)')
+axes[3].set_xlabel('Time (MM-DD HH[:MM])')
 axes[3].set_ylabel('Frequency (Hz)')
 
 plt.subplots_adjust(top=0.985, bottom=0.057, left=0.038, right=0.983, hspace=0.051, wspace=0.126)
